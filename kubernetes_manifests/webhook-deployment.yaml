@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-webhook
+  labels:
+    app: my-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-webhook
+  template:
+    metadata:
+      labels:
+        app: my-webhook
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: my-webhook
+        image: quay.io/mgoerens/demo-webhook-receiver-alertmanager:0.0.1
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: PORT
+            value: "8080"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+  
+        resources:
+          limits:
+            cpu: 10m
+            memory: 30Mi
+          requests:
+            cpu: 10m
+            memory: 30Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-webhook
+  labels:
+  name: my-webhook
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    protocol: TCP
+    name: http
+  selector:
+    app: my-webhook

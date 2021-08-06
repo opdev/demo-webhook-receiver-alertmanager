@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: example-alert
+spec:
+  groups:
+  - name: example
+    rules:
+    - alert: ExampleAlert
+      #expr: systemload_average > 0
+      expr: vector(1)
+      for: 5s
+      labels:
+        app: my-webhook
+        severity: critical
+      annotations:
+        summary: "Example Alert"
