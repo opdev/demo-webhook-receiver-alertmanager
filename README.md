@@ -116,5 +116,5 @@ $ oc logs -f $POD_NAME
 
 - https://zhimin-wen.medium.com/custom-notifications-with-alert-managers-webhook-receiver-in-kubernetes-8e1152ba2c31
 - https://prometheus.io/docs/alerting/latest/configuration/
-- https://docs.openshift.com/container-platform/4.6/post_installation_configuration/configuring-alert-notifications.html
+- https://docs.openshift.com/container-platform/4.8/post_installation_configuration/configuring-alert-notifications.html
 
