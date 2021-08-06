@@ -96,12 +96,12 @@ In the OpenShift console, under "Administration/Cluster Settings", in the
 "Global Configuration" tab, click "AlertManager" then "Create Receiver":
 - Receiver Name: "my-webhook"
 - Receiver Type: "Webhook"
-- URL: "my-webhook-default.apps.my-cluster.opl.opdev.io"
+- URL: "http://my-webhook-default.apps.my-cluster.opl.opdev.io" (don't forget to start with `http://`)
 - Routing labels:
   - Name: "app"
   - Value: "my-webhook"
 
-![webhook_receiver_config](https://user-images.githubusercontent.com/1616123/128547054-d5ff696c-75a6-48d2-a8e4-5416081f48b9.png)
+![webhook_receiver_config](https://user-images.githubusercontent.com/1616123/128550188-08be8b17-7d6f-429c-a2af-4bda9ed35939.png)
 
 ## Observe Result
 
@@ -111,6 +111,13 @@ $ oc logs -f $POD_NAME
 2021/08/06 16:09:26 listening on: :8080
 
 ```
+
+For debugging purposed, one can speed up the frequency of alerts being sent
+with the `Repeat Interval` and `Group Interval` in the AlertManager config:
+
+![image](https://user-images.githubusercontent.com/1616123/128550417-7c7d35dc-db55-4486-a6c9-e5d9249dab1d.png)
+
+
 
 ## Helpful resources
 
