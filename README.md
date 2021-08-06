@@ -101,6 +101,8 @@ In the OpenShift console, under "Administration/Cluster Settings", in the
   - Name: "app"
   - Value: "my-webhook"
 
+![webhook_receiver_config](https://user-images.githubusercontent.com/1616123/128547054-d5ff696c-75a6-48d2-a8e4-5416081f48b9.png)
+
 ## Observe Result
 
 ```shell
