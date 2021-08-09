@@ -12,6 +12,5 @@ spec:
       for: 5s
       labels:
         app: my-webhook
-        severity: critical
       annotations:
         summary: "Example Alert"
