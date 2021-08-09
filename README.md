@@ -82,21 +82,19 @@ state.
 
 ### Add a custom Receiver
 
-Expose the webhook service and retrieve its external endpoint:
+Get the Cluster IP of the webhook service:
 
 ```shell
-$ oc expose svc my-webhook
-route.route.openshift.io/my-webhook exposed
-$ oc get route
-NAME         HOST/PORT                                         PATH   SERVICES     PORT   TERMINATION   WILDCARD
-my-webhook   my-webhook-default.apps.my-cluster.opl.opdev.io          my-webhook   http                 None
+$ oc get svc my-webhook
+NAME         TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+my-webhook   NodePort   172.30.188.12   <none>        8080:31635/TCP   2d16h
 ```
 
 In the OpenShift console, under "Administration/Cluster Settings", in the
 "Global Configuration" tab, click "AlertManager" then "Create Receiver":
 - Receiver Name: "my-webhook"
 - Receiver Type: "Webhook"
-- URL: "http://my-webhook-default.apps.my-cluster.opl.opdev.io" (don't forget to start with `http://`)
+- URL: "http://172.30.188.12:8080/webhook"
 - Routing labels:
   - Name: "app"
   - Value: "my-webhook"
