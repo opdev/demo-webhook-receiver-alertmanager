@@ -58,7 +58,8 @@ $ oc -n openshift-user-workload-monitoring get pod
 No resources found in openshift-user-workload-monitoring namespace.
 $ oc -n openshift-monitoring apply -f kubernetes_manifests/cluster-monitoring-config.yaml 
 configmap/cluster-monitoring-config created
-$ oc -n openshift-user-workload-monitoring get podNAME                                   READY   STATUS    RESTARTS   AGE
+$ oc -n openshift-user-workload-monitoring get pod
+NAME                                   READY   STATUS    RESTARTS   AGE
 prometheus-operator-6b56db9975-zbpf8   2/2     Running   0          12s
 prometheus-user-workload-0             5/5     Running   1          9s
 prometheus-user-workload-1             5/5     Running   1          9s
