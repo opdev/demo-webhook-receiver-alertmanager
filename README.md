@@ -117,6 +117,25 @@ with the `Repeat Interval` and `Group Interval` in the AlertManager config:
 ![image](https://user-images.githubusercontent.com/1616123/128550417-7c7d35dc-db55-4486-a6c9-e5d9249dab1d.png)
 
 
+## Troubleshooting
+
+### The Webhook doesn't receive alerts
+
+By default, only the first receiver matching the alert's labels is sending the
+alert. Check the Receivers configuration, and espcially make sure there are
+no other Receiver already catching the alert.
+
+```
+Every alert enters the routing tree at the configured top-level route, which
+must match all alerts (i.e. not have any configured matchers). It then
+traverses the child nodes. If continue is set to false, it stops after the
+first matching child. If continue is true on a matching node, the alert will
+continue matching against subsequent siblings. If an alert does not match any
+children of a node (no matching child nodes, or none exist), the alert is
+handled based on the configuration parameters of the current node.
+```
+
+See https://prometheus.io/docs/alerting/latest/configuration/#route
 
 ## Helpful resources
 
